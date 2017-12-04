@@ -36,7 +36,13 @@ def compute(bIndex):
     import time, socket
 	global words,bounds
 	pals = 0
-	for(x = bounds[bIndex];)
+	for x in range (bounds[bIndex],bounds[bIndex]+1):
+		word = words[x]
+		reverse = word[::-1]
+		rChar = reverse[0]
+		firstLetterId = (rChar < 'a' ? rchar + 32 : rChar) - 97
+		
+		
 	
 		
     host = socket.gethostname()
