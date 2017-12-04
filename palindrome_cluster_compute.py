@@ -40,7 +40,15 @@ def compute(bIndex):
 		word = words[x]
 		reverse = word[::-1]
 		rChar = reverse[0]
-		firstLetterId = (rChar < 'a' ? rchar + 32 : rChar) - 97
+		if(rChar < 'a')
+			rChar + 32
+		firstLetterId = rChar - 97
+		if(firstLetterId >= 0 and firstLetterId < 26)
+			#for each word in the first letter group
+			j = 1
+			found = 1
+			for j in range (bounds[firstLetterId], bounds[firstLetterId+1])
+				found 
 		
 		
 	
