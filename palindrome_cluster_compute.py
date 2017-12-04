@@ -14,10 +14,10 @@ def setup(data_file):
 		#ord()#turns char to ascii value
 		#chr()#turns number to ascii character
 		words.append(line.split('\n'))
-		if(words[i][0] == nextUpper || words[i][0] == nextLower)
+		if(words[i][0] == nextUpper or words[i][0] == nextLower)
 		{
-			nextUpper++
-			nextLower++
+			nextUpper += 1
+			nextLower += 1
 			bounds.append(i)
 		}
 		i += 1
