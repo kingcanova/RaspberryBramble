@@ -58,18 +58,14 @@ def compute(bIndex):
 				pals += 1
 				
 	return (pals, hostname)
-		
 	
-		
-    host = socket.gethostname()
-    return (host, numPals)
 
 if __name__ == '__main__':
     # executed on client only; variables created below, including modules imported,
     # are not available in job computations
     import dispy, sys, functools, random
     # if no data file name is given, use this file as data file
-    data_file = sys.argv[1] if len(sys.argv) > 1 else sys.argv[0]
+    data_file = sys.argv[1] if len(sys.argv) > 1 else sys.exit()
     cluster = dispy.JobCluster(compute, depends=[data_file],
                                setup=functools.partial(setup, data_file), cleanup=cleanup)
     # run 'compute' with 20 random numbers on available CPUs
@@ -85,3 +81,4 @@ if __name__ == '__main__':
         # other fields of 'job' that may be useful:
         # job.stdout, job.stderr, job.exception, job.ip_addr, job.end_time
     cluster.print_status()  # shows which nodes executed how many jobs etc.
+    cluster.close()
