@@ -5,7 +5,6 @@ def setup(data_file):
     words = []
     bounds = []
 
-
     f = open(data_file, 'r').read()  # read file in to memory; data_file can now be deleted
     i = 0
     nextUpper = 'A'
@@ -20,8 +19,8 @@ def setup(data_file):
         words.append(line)
         if (words[i][0] == nextUpper or words[i][0] == nextLower):
 
-            nextUpper += 1
-            nextLower += 1
+            nextUpper = chr(ord(nextUpper)+ 1)
+            nextLower = chr(ord(nextLower)+ 1)
             bounds.append(i)
         i += 1
         print("got here2")
@@ -61,7 +60,7 @@ def compute(bIndex):
             if (found == 1):
                 pals += 1
 
-    return (pals, hostname)
+    return(pals, hostname)
 
 
 if __name__ == '__main__':
@@ -76,13 +75,17 @@ if __name__ == '__main__':
                                setup=functools.partial(setup, data_file), cleanup=cleanup)
     # run 'compute' with 20 random numbers on available CPUs
     jobs = []
+    print("PRooooblem here \n\n\n")
     for i in range(26):
         job = cluster.submit(i)
         job.id = i  # associate an ID to identify jobs (if needed later)
         jobs.append(job)
     # cluster.wait() # waits until all jobs finish
+    print("THE PROBLEM IS IN THE JOBS LOOP BELOOOWWW \n\n\n")
     for job in jobs:
+        print("Is the problem in returning the job? \n\n\n")
         pals, hostname = job()  # waits for job to finish and returns results
+        print("NO ITS PRINTING THE JOB \n\n\n")
         print('%s executed job %d at %s with %d palindromes counted' % (hostname, job.id, job.start_time,pals))
         # other fields of 'job' that may be useful:
         # job.stdout, job.stderr, job.exception, job.ip_addr, job.end_time
