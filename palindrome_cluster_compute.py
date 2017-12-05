@@ -12,6 +12,7 @@ def setup(data_file):
     nextLower = 'a'
     for line in f:
 
+        line = str(line)
         # ord()#turns char to ascii value
         # chr()#turns number to ascii character
         words.append(line.split('\n'))
@@ -21,7 +22,7 @@ def setup(data_file):
             nextLower += 1
             bounds.append(i)
         i += 1
-
+    f.close()
     return 0
 
 
@@ -78,7 +79,7 @@ if __name__ == '__main__':
     # cluster.wait() # waits until all jobs finish
     for job in jobs:
         pals, hostname = job()  # waits for job to finish and returns results
-        print('%s executed job %s at %s with %s palindromes counted' % (hostname, job.id, job.start_time,pals))
+        print('%s executed job %s at %s with %d palindromes counted' % (hostname, job.id, job.start_time,pals))
         # other fields of 'job' that may be useful:
         # job.stdout, job.stderr, job.exception, job.ip_addr, job.end_time
     cluster.print_status()  # shows which nodes executed how many jobs etc.
