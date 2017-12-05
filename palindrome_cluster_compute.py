@@ -11,17 +11,20 @@ def setup(data_file):
     nextUpper = 'A'
     nextLower = 'a'
     for line in f:
-
         line = str(line)
+        lines = line.split('\n')
+        line = lines[0]
+        print("got here")
         # ord()#turns char to ascii value
         # chr()#turns number to ascii character
-        words.append(line.split('\n'))
+        words.append(line)
         if (words[i][0] == nextUpper or words[i][0] == nextLower):
 
             nextUpper += 1
             nextLower += 1
             bounds.append(i)
         i += 1
+        print("got here2")
     return 0
 
 
@@ -36,6 +39,7 @@ def compute(bIndex):
     import time, socket
     global words, bounds
     pals = 0
+    print("its in here")
     hostname = socket.gethostname()
     for x in range(bounds[bIndex], bounds[bIndex+1]):
         word = words[x]
@@ -67,6 +71,7 @@ if __name__ == '__main__':
 
     # if no data file name is given, use this file as data file
     data_file = sys.argv[1] if len(sys.argv) > 1 else sys.exit()
+    print(sys.argv[1] + "\n\n\n")
     cluster = dispy.JobCluster(compute,nodes=['10.20.1.17','10.20.1.72','10.20.1.32','10.20.1.75','10.20.0.73'], depends=[data_file],
                                setup=functools.partial(setup, data_file), cleanup=cleanup)
     # run 'compute' with 20 random numbers on available CPUs
