@@ -15,11 +15,11 @@ def setup(data_file):
 		#chr()#turns number to ascii character
 		words.append(line.split('\n'))
 		if(words[i][0] == nextUpper or words[i][0] == nextLower)
-		{
+		
 			nextUpper += 1
 			nextLower += 1
 			bounds.append(i)
-		}
+		
 		i += 1
 		
 	
@@ -36,6 +36,7 @@ def compute(bIndex):
     import time, socket
 	global words,bounds
 	pals = 0
+	host = socket.gethostname()
 	for x in range (bounds[bIndex],bounds[bIndex]+1):
 		word = words[x]
 		reverse = word[::-1]
@@ -46,10 +47,17 @@ def compute(bIndex):
 		if(firstLetterId >= 0 and firstLetterId < 26)
 			#for each word in the first letter group
 			j = 1
-			found = 1
+			found = 0
 			for j in range (bounds[firstLetterId], bounds[firstLetterId+1])
-				found 
-		
+			
+				if(words[j] == reverse)
+				
+					found = 1
+					break
+			if (found == 1)
+				pals += 1
+				
+	return (pals, hostname)
 		
 	
 		
@@ -66,14 +74,14 @@ if __name__ == '__main__':
                                setup=functools.partial(setup, data_file), cleanup=cleanup)
     # run 'compute' with 20 random numbers on available CPUs
     jobs = []
-    for i in range(20):
-        job = cluster.submit(random.randint(5,20))
+    for i in range(26):
+        job = cluster.submit(i)
         job.id = i # associate an ID to identify jobs (if needed later)
         jobs.append(job)
     # cluster.wait() # waits until all jobs finish
     for job in jobs:
-        host, n = job() # waits for job to finish and returns results
-        print('%s executed job %s at %s with %s' % (host, job.id, job.start_time, n))
+        pals, hostname = job() # waits for job to finish and returns results
+        print('%s executed job %s at %s with %s palindromes counted' % (host, job.id, job.start_time, n))
         # other fields of 'job' that may be useful:
         # job.stdout, job.stderr, job.exception, job.ip_addr, job.end_time
     cluster.print_status()  # shows which nodes executed how many jobs etc.
