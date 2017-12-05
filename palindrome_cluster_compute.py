@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
     # if no data file name is given, use this file as data file
     data_file = sys.argv[1] if len(sys.argv) > 1 else sys.exit()
-    cluster = dispy.JobCluster(compute, depends=[data_file],
+    cluster = dispy.JobCluster(compute,nodes=['10.20.1.17','10.20.1.72','10.20.1.32','10.20.1.75','10.20.0.73'], depends=[data_file],
                                setup=functools.partial(setup, data_file), cleanup=cleanup)
     # run 'compute' with 20 random numbers on available CPUs
     jobs = []
