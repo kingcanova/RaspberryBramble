@@ -14,7 +14,7 @@ Here is the compilation of code and files I use for my RaspberryBramble, which i
 1  Processor:
 
 
-##Timings (Nor'easter):
+## Timings (Nor'easter):
 4 processors: 5.913531 seconds
 
 8 processors: 3.921840 seconds
