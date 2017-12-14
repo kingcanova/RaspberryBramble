@@ -3,11 +3,11 @@ Here is the compilation of code and files I use for my RaspberryBramble, which i
 
 
 ## Timings:
-16 Processors: 4126 seconds
+16 Processors: 483 seconds
 
-12 Processors: 4151 seconds
+12 Processors: 
 
-8  Processors: 4136 seconds
+8  Processors: 
 
 4  Processors:
 
