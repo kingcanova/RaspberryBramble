@@ -1,4 +1,4 @@
-# executed on each node before any jobs are scheduled
+# executed on each node before any jobs are scheduled!
 def setup(data_file):
     # read data in file to global variable
     global words, bounds
